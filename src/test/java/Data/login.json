@@ -1,0 +1,28 @@
+[
+
+{
+   "email" : "nishu@yopmail.com",
+   "password" : "nishu123"
+},
+
+{
+   "email" : "nishu@yopmail.co",
+   "password" : "nishu123"
+},
+
+{
+   "email" : "nishu@yopmail.com",
+   "password" : "nishu12"
+},
+
+{
+   "email" : "nishu@yopmail",
+   "password" : "nishu12"
+},
+
+{
+   "email" : "",
+   "password" : ""
+}
+
+]
