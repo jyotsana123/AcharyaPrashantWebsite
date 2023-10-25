@@ -20,11 +20,16 @@ public class Login extends BaseTest {
     @Description("TC#5 - Verify that with valid email and valid password, Login is successfull !!")
 	public void loginWithValidCreds() throws InterruptedException
 	{
+    	//Get page title after landing on Website
+    	String pageTitle = driver.getTitle();
+		System.out.println(pageTitle);
+		//Login
 		loginpage = new LoginPage(driver);
 		loginpage.clickOnLoginLink();
 		loginpage.login("nishu@yopmail.com", "nishu123");
 		loginpage.waitingForPageAfterLogin();
-		Assert.assertEquals(driver.getCurrentUrl(), "https://acharyaprashant.org/");
+		//Verify that after login, the user is redirected to the same page from where he clicked on Login.
+		Assert.assertEquals(driver.getTitle(), pageTitle);
 	}
 	
 	@Test(priority=2)

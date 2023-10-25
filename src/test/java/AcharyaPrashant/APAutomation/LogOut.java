@@ -26,7 +26,7 @@ public class LogOut {
 		driver.findElement(By.xpath("//span[text()='Menu']")).click();
 		driver.findElement(By.xpath("//a[@id='main-website-logout-btn']")).click();
 		//Assert.assertEquals("login", driver.getCurrentUrl().contains("login"));
-		Assert.assertEquals("Sign In with Email", driver.getPageSource().contains("Sign In with Email"));
+		Assert.assertEquals(driver.getTitle(), "Login");
 	}
 
 }
