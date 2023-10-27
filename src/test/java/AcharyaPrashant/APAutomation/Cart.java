@@ -30,6 +30,7 @@ public class Cart {
 		//driver.findElement(By.xpath("//img[contains(@src,'https://cimg.acharyaprashant.org/images/img-2d0a2d03-f39e-4302-aa7b-c088eb715bb8/0/image.jpg')]")).click();
 		//driver.findElement(By.xpath("//*[@id=\"svelte\"]/div[1]/div[3]/div[2]/div[2]/div/div[3]/div[1]/div[4]/div[2]/div[1]/button/div/span")).click();
 		String book = "10 धोखे जो सब खाते हैं";
+		//String book = "आत्मा + अष्टावक्र गीता";
 		
 		List<WebElement> books = driver.findElements(By.cssSelector(".items-start.pl-2"));
 		for (int i = 0; i < books.size(); i++) 
@@ -43,7 +44,49 @@ public class Cart {
 				break;
 			}
 		}
+		//wait to appear add to cart button on page
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    wait1.until(ExpectedConditions.visibilityOf(driver.findElement(By.cssSelector("div[class='px-1'] div[class='mb-3 font-semibold'] span[class='font-en svelte-t3mcl']"))));
+		
+		//add book to cart
+		driver.findElement(By.cssSelector("div[class='px-1'] div[class='mb-3 font-semibold'] span[class='font-en svelte-t3mcl']")).click();
+		//Go to cart page
+		driver.findElement(By.xpath("(//span[@class='font-en svelte-t3mcl'][normalize-space()='GO TO CART'])[2]")).click();
 
+		//Check items showing in cart
+		List<WebElement>cartBooks = driver.findElements(By.cssSelector(".flex.w-full.flex-col.items-start"));
+		for (int i = 0; i < cartBooks.size(); i++) 
+		{
+			String cartArray = cartBooks.get(i).getText();
+			System.out.println(cartArray);
+			if(cartArray.contains(book))
+			{
+				System.out.println(book + " book is available in cart");
+				break;
+			}
+		}
+		
+		//Logout
+		driver.findElement(By.xpath("//span[text()='Menu']")).click();
+		driver.findElement(By.xpath("//a[@id='main-website-logout-btn']")).click();
+		
+		//login again to check item still available in cart
+		driver.findElement(By.xpath("//input[contains(@id,'input-username')]")).sendKeys("nishu@yopmail.com");
+		driver.findElement(By.id("password")).sendKeys("nishu123");
+		driver.findElement(By.xpath("//button[contains(@id,'sign-in-btn')]")).click();
+		driver.findElement(By.cssSelector(".flex.items-center.pr-1")).click();
+		List<WebElement>cartBooksAfterLogin = driver.findElements(By.cssSelector(".flex.w-full.flex-col.items-start"));
+		for (int i = 0; i < cartBooksAfterLogin.size(); i++) 
+		{
+			String cartArray = cartBooksAfterLogin.get(i).getText();
+			System.out.println(cartArray);
+			if(cartArray.contains(book))
+			{
+				System.out.println(book + " book is still available in cart after login");
+				break;
+			}
+		}
+		
 	}
 
 }

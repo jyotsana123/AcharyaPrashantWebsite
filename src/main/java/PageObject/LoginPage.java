@@ -10,10 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+import AbstractComponent.AbstractComponent;
+
+public class LoginPage extends AbstractComponent {
 	WebDriver driver;
 	public LoginPage(WebDriver driver)
 	{
+		super(driver);
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -41,9 +44,12 @@ public class LoginPage {
 	
 	@FindBy(xpath="//p[contains(@id,'login-failed-text')]")
 	WebElement loginFailedText;
+	
+	By pageAfterLogin = By.xpath("//div/img[@src='https://cimg.acharyaprashant.org/images/img-d3830ac7-d31b-4fc2-9d5d-1fe1978a27ec/30/image.jpg']");
 
 	public void clickOnLoginLink()
 	{
+		waitForElementToAppear(pageAfterLogin);
 		menu.click();
 		loginLink.click();
 	}
@@ -58,6 +64,7 @@ public class LoginPage {
 		email.sendKeys(Email);
 		password.sendKeys(Password);
 		signInButton.click();
+		waitForElementToAppear(pageAfterLogin);
 	}
 	
 	public void goTo()
@@ -77,38 +84,11 @@ public class LoginPage {
 		return loginFailedText.getText();
 	}
 	
-	public void waitingForPageAfterLogin()
-	{
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div/img[@src='https://cimg.acharyaprashant.org/images/img-d3830ac7-d31b-4fc2-9d5d-1fe1978a27ec/30/image.jpg']"))));
-	}
+//	public void waitingForPageAfterLogin()
+//	{
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+//	    wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//div/img[@src='https://cimg.acharyaprashant.org/images/img-d3830ac7-d31b-4fc2-9d5d-1fe1978a27ec/30/image.jpg']"))));
+//	}
 	
-	//String errorText = loginFailedText.getText();
-//	public String loginSuccessMessage()
-//	{
-//		System.out.println(loginSuccess.getText());
-//		return loginSuccess.getText();
-//	}
-//	
-//	public String invalidEmailorpassMessage()
-//	{
-//		System.out.println(invalidEmailorPass.getText());
-//		return invalidEmailorPass.getText();
-//	}
-//	
-//	public String emailerrorMessage()
-//	{
-//		return emailError.getText();
-//	}
-//	
-//	public String passworderrorMessage()
-//	{
-//		return passwordError.getText();
-//	}
-//	
-//	public String inavldEmailErrMessage()
-//	{
-//		return invalidEmailError.getText();
-//	}
-
+	
 }
