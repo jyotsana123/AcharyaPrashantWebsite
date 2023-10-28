@@ -27,6 +27,8 @@ public class LoginPage extends AbstractComponent {
 	@FindBy(xpath="//div/span[text()='Login']")
 	WebElement loginLink;
 	
+	By loginlink = By.xpath("//div/span[text()='Login']");
+	
 	@FindBy(id="main-website-sign-up-btn")
 	WebElement signupLink;
 	
@@ -42,6 +44,8 @@ public class LoginPage extends AbstractComponent {
 	@FindBy(xpath="//a[contains(@id,'logout-btn')]")
 	WebElement logoutLink;
 	
+	By logoutlink = By.xpath("//a[contains(@id,'logout-btn')]");
+	
 	@FindBy(xpath="//p[contains(@id,'login-failed-text')]")
 	WebElement loginFailedText;
 	
@@ -51,6 +55,7 @@ public class LoginPage extends AbstractComponent {
 	{
 		waitForElementToAppear(pageAfterLogin);
 		menu.click();
+		waitForElementToAppear(loginlink);
 		loginLink.click();
 	}
 	
@@ -64,7 +69,7 @@ public class LoginPage extends AbstractComponent {
 		email.sendKeys(Email);
 		password.sendKeys(Password);
 		signInButton.click();
-		waitForElementToAppear(pageAfterLogin);
+	//	waitForElementToAppear(pageAfterLogin);
 	}
 	
 	public void goTo()
@@ -75,6 +80,7 @@ public class LoginPage extends AbstractComponent {
 	public void logout()
 	{
 		menu.click();
+		waitForElementToAppear(logoutlink);
 		logoutLink.click();
 	}
 	

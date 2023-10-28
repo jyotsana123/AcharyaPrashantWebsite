@@ -51,15 +51,15 @@ public class BaseTest {
 		return loginpage;
 	}
 
-	public List<HashMap<String, String>> getJsonDataToMapLogin(String filePath) throws IOException {
-		String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
-		ObjectMapper mapper = new ObjectMapper();
-		List<HashMap<String, String>> data = mapper.readValue(jsonContent,
-				new TypeReference<List<HashMap<String, String>>>() {
-				});
-		return data;
-	}
-	
+//	public List<HashMap<String, String>> getJsonDataToMapLogin(String filePath) throws IOException {
+//		String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
+//		ObjectMapper mapper = new ObjectMapper();
+//		List<HashMap<String, String>> data = mapper.readValue(jsonContent,
+//				new TypeReference<List<HashMap<String, String>>>() {
+//				});
+//		return data;
+//	}
+
 	public List<HashMap<String, String>> getJsonDataToMapSignUp(String filePath) throws IOException {
 		String jsonContent = FileUtils.readFileToString(new File(filePath), StandardCharsets.UTF_8);
 		ObjectMapper mapper = new ObjectMapper();
@@ -68,13 +68,10 @@ public class BaseTest {
 				});
 		return data;
 	}
-	
-	//@AfterMethod
-	public void closeBrowser()
-	{
+
+	@AfterMethod
+	public void closeBrowser() {
 		driver.close();
 	}
 
 }
-
-

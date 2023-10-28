@@ -15,7 +15,7 @@ public class DataReader {
 
 	// this is utility class
 
-	public List<HashMap<String, String>> getJsonDataToMap() throws IOException {
+/*	public List<HashMap<String, String>> getJsonDataToMap() throws IOException {
 		// read json to string
 		String jsonContent = FileUtils.readFileToString(
 				new File(System.getProperty("user.dir") + "//src//test//java//Data//login.json"),
@@ -33,6 +33,7 @@ public class DataReader {
 
 		return data;
 	}
+	*/
 	
 	public List<HashMap<String, String>> getJsonDataToMapSignUp() throws IOException {
 		// read json to string

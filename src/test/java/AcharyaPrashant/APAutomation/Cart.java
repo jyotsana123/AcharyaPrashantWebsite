@@ -12,13 +12,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Cart {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.get("https://acharyaprashant.org/");
 		driver.findElement(By.xpath("//span[text()='Menu']")).click();
+		Thread.sleep(2000);
 		driver.findElement(By.xpath("//div/span[text()='Login']")).click();
 		driver.findElement(By.xpath("//input[contains(@id,'input-username')]")).sendKeys("nishu@yopmail.com");
 		driver.findElement(By.id("password")).sendKeys("nishu123");
